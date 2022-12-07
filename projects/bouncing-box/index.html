@@ -8,16 +8,20 @@
 		.box {
 			width: 70px;
 			height: 70px;
-			background-color: teal;
-			font-size: 300%;
+			background-color: rgb(210, 27, 27);
+			font-size: 300%; 
 			text-align: center;
 			display: block;
 			position: absolute;
 			top: 100px;
-			left: 0px;  /* <--- Change me! */
+			left: 420px;  /* <--- Change me! */
 		}
 		.board{
 			height: 100vh;
+		}
+		body { 
+			background-image: url ("https://i5.peapod.com/c/W9/W9LLD.png");
+			background-color: #1ae232;
 		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -62,14 +66,28 @@
 			
 			// TODO 2 - Variable declarations 
 			
+			var positionX = 0; 
+			var points = 0; 
+			var speed = 10; 
 
-			
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
 			it should move the Box to a new location. If the box drifts off the screen
 			turn it around! 
 			*/
 			function update() {
+				/* Your Code to Increase position by 10 HERE*/
+				positionX = positionX + speed; 
+				
+				if(positionX > boardWidth){
+					speed *= -1;
+				}
+				
+				if (positionX < 0){ 
+					speed *= -1;
+				}
+				
+			moveBoxTo (positionX); 
 				
 
 			};
@@ -80,11 +98,13 @@
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
-				
-
+				positionX = 0; 
+				points = points + 1;
+				changeBoxText(points);
+				speed = speed + 3; 
 
 			};
 		})();
 	</script>
 </body>
-</html>
+</html> 
